@@ -1,0 +1,53 @@
+﻿@using Online_Boutique.Models.MyModels;
+@model List<SanPham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/TrangChu_Layout.cshtml";
+}
+
+<!--phần dưới cái banner...TẠI VÌ MỖI PARTIAL VIẾT ĐC CÓ 1 LOẠI TRUY VẤN ????-->
+<div class="container">
+    <div class="main-content">
+        <div class="online-strip">
+            <div class="col-md-4 follow-us">
+                <h3>follow us : <a class="twitter" href="#"></a><a class="facebook" href="#"></a></h3>
+            </div>
+            <div class="col-md-4 shipping-grid">
+                <div class="shipping">
+                    <img src="~/Content/web/images/shipping.png" alt="" />
+                </div>
+                <div class="shipping-text">
+                    <h3>Free Shipping</h3>
+                    <p>on orders over $ 199</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-md-4 online-order">
+                <p>Order online</p>
+                <h3>Tel:999 4567 8902</h3>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="products-grid">
+            <header>
+                <h3 class="head text-center">Xu Hướng-Sản Phẩm Mới</h3>
+            </header>
+            @{ 
+                foreach (var item in Model)
+                {
+                    <div class="col-md-4 product simpleCart_shelfItem text-center">
+                        <a href="@Url.Action("ChiTietSP","MyProducts",new {@masp=@item.masp})"><img src="@Url.Content("~/HinhAnh/nu/"+@item.anhsp)" class="anhsp" alt="" /></a>
+                        <div class="mask">
+                            <a href="@Url.Action("ChiTietSP","MyProducts",new {@masp=@item.masp})">chi tiết</a>
+                        </div>
+                        <a class="product_name" href="@Url.Action("ChiTietSP","MyProducts",new {@masp=@item.masp})">@item.tensp</a>
+                        <p><a class="item_add" href="@Url.Action("ThemGioHang","MyCart",new {@masp= @item.masp, @url= Request.Url.ToString() })"><i></i> <span class="item_price">@item.giabansp VND</span></a></p>
+                    </div>
+                }
+              }
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

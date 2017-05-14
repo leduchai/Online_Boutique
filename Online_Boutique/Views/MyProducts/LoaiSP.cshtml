@@ -1,0 +1,194 @@
+﻿@using Online_Boutique.Models.MyModels;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<SanPham>
+@*@model List<LoaiSanPham> nếu ta có 2 cái @model thì sao....thì Model sẽ là cái nào?????????*@
+@{
+    ViewBag.Title = "LoaiSP";
+    Layout = "~/Views/Shared/TrangCon_Layout.cshtml";
+}
+
+@section leftcontent{
+
+    <!-- content-section-starts -->
+    <div class="container">
+        <div class="products-page">
+            <div class="products">
+                <div class="product-listy">
+                    <h2>our Products</h2>
+                    <ul class="product-list">
+                        <li><a href="">New Products</a></li>
+                        <li><a href="">Old Products</a></li>
+                        <li><a href="">T-shirts</a></li>
+                        <li><a href="">pants</a></li>
+                        <li><a href="">Dress</a></li>
+                        <li><a href="">Shorts</a></li>
+                        <li><a href="#">Shirts</a></li>
+                        <li><a href="register.html">Register</a></li>
+                    </ul>
+                </div>
+                <div class="latest-bis">
+                    <img src="~/Content/web/images/l4.jpg" class="img-responsive" alt="" />
+                    <div class="offer">
+                        <p>40%</p>
+                        <small>Top Offer</small>
+                    </div>
+                </div>
+                <div class="tags">
+                    <h4 class="tag_head">Tags Widget</h4>
+                    <ul class="tags_links">
+                        <li><a href="#">Kitesurf</a></li>
+                        <li><a href="#">Super</a></li>
+                        <li><a href="#">Duper</a></li>
+                        <li><a href="#">Theme</a></li>
+                        <li><a href="#">Men</a></li>
+                        <li><a href="#">Women</a></li>
+                        <li><a href="#">Equipment</a></li>
+                        <li><a href="#">Best</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Men</a></li>
+                        <li><a href="#">Apparel</a></li>
+                        <li><a href="#">Super</a></li>
+                        <li><a href="#">Duper</a></li>
+                        <li><a href="#">Theme</a></li>
+                        <li><a href="#">Responsive</a></li>
+                        <li><a href="#">Women</a></li>
+                        <li><a href="#">Equipment</a></li>
+                    </ul>
+
+                </div>
+
+            </div>
+}
+<div class="new-product">
+    <div class="new-product-top">
+        <ul class="product-top-list">
+            <li><a href="index.html">Home</a>&nbsp;<span>&gt;</span></li>
+            <li><span class="act">Best Sales</span>&nbsp;</li>
+        </ul>
+        <p class="back"><a href="index.html">Back to Previous</a></p>
+        <div class="clearfix"></div>
+    </div>
+    <div class="mens-toolbar">
+        <div class="sort">
+            <div class="sort-by">
+                <label>Sort By</label>
+                <select>
+                    <option value="">
+                        Position
+                    </option>
+                    <option value="">
+                        Name
+                    </option>
+                    <option value="">
+                        Price
+                    </option>
+                </select>
+                <a href=""><img src="~/Content/web/images/arrow2.gif" alt="" class="v-middle"></a>
+            </div>
+        </div>
+        <ul class="women_pagenation">
+            <li>Page:</li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
+        <div class="cbp-vm-options">
+            <a href="#" class="cbp-vm-icon cbp-vm-grid cbp-vm-selected" data-view="cbp-vm-view-grid" title="grid">Grid View</a>
+            <a href="#" class="cbp-vm-icon cbp-vm-list" data-view="cbp-vm-view-list" title="list">List View</a>
+        </div>
+        <div class="pages">
+            <div class="limiter visible-desktop">
+                <label>Show</label>
+                <select>
+                    <option value="" selected="selected">
+                        9
+                    </option>
+                    <option value="">
+                        15
+                    </option>
+                    <option value="">
+                        30
+                    </option>
+                </select> per page
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <ul>
+            @{
+                foreach (var item in Model)
+                {
+                    <li>
+                        <a class="cbp-vm-image" href="@Url.Action("ChiTietSP","MyProducts",new {@masp=@item.masp })">
+                        </a><div class="simpleCart_shelfItem">
+                            <a class="cbp-vm-image" href="@Url.Action("ChiTietSP","MyProducts",new {@masp=@item.masp })">
+                                <div class="view view-first">
+                                    <div class="inner_content clearfix">
+                                        <div class="product_image">
+                                            <img src="@Url.Content("~/HinhAnh/nu/" + @item.anhsp)" class="img-responsive anhsp" style="height:320px; width:300px;" alt="">
+                                            <div class="mask">
+                                                <div class="info">chi tiết</div>
+                                            </div>
+                                            <div class="product_container">
+                                                <div class="cart-left">
+                                                    <p class="title">@item.tensp</p>
+                                                </div>
+                                                <div class="pricey"><span class="item_price">@item.giabansp vnd</span></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="cbp-vm-details">
+                                @item.motasp
+                            </div>
+                                <a class="cbp-vm-icon cbp-vm-add item_add" href="@Url.Action("ThemGioHang","MyCart",new {@masp= @item.masp, @url= Request.Url.ToString() })">Add to cart</a>
+
+                        @*cach 2:              @using (Html.BeginForm("ThemGioHang", "MyCart", new { @masp = @item.masp, @url = Request.Url.ToString() }))
+                        {
+                                
+                                <input type="submit" value="Add to cart" class="cbp-vm-icon cbp-vm-add item_add" />
+                                
+                        }*@
+                           
+                        </div>
+                    </li>
+                        }
+
+            }
+
+        </ul>
+    </div>
+</div>
+<script src="~/Content/web/js/cbpViewModeSwitch.js" type="text/javascript"></script>
+<script src="~/Content/web/js/classie.js" type="text/javascript"></script>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>
+    </div>
+<!-- content-section-ends -->
+
+
+
+<!-- phân trang...đánh số trang-->
+@{
+
+    if (Model.PageCount != 0)
+        {
+            <div style="float:right;margin-right:100px;">
+                <span>Trang:  @Model.PageNumber/@Model.PageCount</span>
+                <span>@Html.PagedListPager(Model,page=>@Url.Action("LoaiSP",new {@page=page,@maloaisp= ViewBag.mlsp}))</span>
+            </div>
+            
+        }
+ }
+
+<br />
+<br />
+
+@Html.Action("ContainerPartial","MyHome")

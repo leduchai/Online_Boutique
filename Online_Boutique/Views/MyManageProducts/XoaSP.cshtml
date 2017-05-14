@@ -1,0 +1,111 @@
+﻿@model Online_Boutique .Models.MyModels.SanPham
+
+@{
+    ViewBag.Title = "XoaSP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Bạn có chắc chắn muốn xóa sản phẩm này?</h3>
+<div>
+    <h4>Sản Phẩm: @Model.masp</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model =>@Model.masp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => @model.masp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tensp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tensp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.giagocsp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.giagocsp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.maloaisp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiSanPham.tenloaisp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.giabansp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.giabansp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngaynhapsp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngaynhapsp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.soluongsp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soluongsp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.motasp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.motasp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.anhsp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anhsp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tinhtrangsp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tinhtrangsp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.size)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-actions no-color">
+            <input type="submit" value="Xác Nhận Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở Về Danh Sách", "DanhSachSP")
+        </div>
+    }
+</div>

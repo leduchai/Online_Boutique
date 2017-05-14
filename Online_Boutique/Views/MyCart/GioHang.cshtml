@@ -1,0 +1,82 @@
+﻿@using Online_Boutique.Models.MyModels;
+@model List<GioHang>
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/TrangCon_Layout.cshtml";
+}
+@* lúc cart empty click vào cart bị lỗi section not  defined*@
+
+
+@section leftcontent{
+
+    }
+<div class="cart-items">
+    <div class="container">
+        <div class="dreamcrub">
+            <ul class="breadcrumbs">
+                <li class="home">
+                    <a href="index.html" title="Go to Home Page">Home</a>&nbsp;
+                    <span>&gt;</span>
+                </li>
+                <li class="women">
+                    Cart
+                </li>
+            </ul>
+            <ul class="previous">
+                <li><a href="index.html">Back to Previous Page</a></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <h3><b>Giỏ hàng của tôi,Tổng thanh toán: @String.Format("{0:0,0}", ViewBag.tongtien) vnd</b></h3>
+        <div class="cart-gd">
+
+         
+        @{ int i = 1;}
+        @foreach (var item in Model)
+        {
+            <script>
+                $(document).ready(function(c) {
+					$('.myclose1+@i.ToString()').on('click', function(c){
+						$('.mycartheader+@i.ToString()').fadeOut('slow', function(c){
+							$('.mycart-header+@i.ToString()').remove();
+                    });
+                });
+            });
+            </script>
+            <div class="cart-header mycart-header+@i.ToString()">
+                <a href="@Url.Action("XoaGioHang","MyCart",new { @masp= @item.masp })"><div class="close1 myclose1+@i.ToString()"  > </div></a>
+                @* @Html.ActionLink("xóa","XoaGioHang","MyCart",new{@masp=@item.masp}).....còn cái @Html.Action() nữa??? dkm đau hết đầu *@
+                <div class="cart-sec simpleCart_shelfItem">
+                    <div class="cart-item cyc">
+                        <img src="@Url.Content("~/HinhAnh/Nu/" + @item.anhsp)" style="height:150px;width:120px;" class="img-responsive" alt="">
+                    </div>
+                    <div class="cart-item-info">
+                        <h3><a href="#"> @item.tensp</a><span><b>Giá: @String.Format("{0:0,0}",@item.giabansp) vnd</b></span></h3>
+                        <ul class="qty">
+                            <li><p>Size: </p></li>
+                            <li><p>Số lượng: @item.slmuasp</p></li>
+                        </ul>
+                        <div class="delivery">                  
+                            @*<span>Tình trang:</span>*@
+                            <span style="float:left;">Thành tiền: @String.Format("{0:0,0}",item.thanhtien) vnd</span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+            </div>
+
+            i++;
+        }
+
+            
+        </div>
+    </div>
+</div>
+
+
+
+@* viewbag.tenchude = db.chude.single(x=>x.machude==...).TenChuDe;
+           ????     .Single(...) vì biết chắc chắn mã đó đã tồn tại
+ *@

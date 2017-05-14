@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Online_Boutique.Models.MyModels.SanPham>
+
+@{
+    ViewBag.Title = "DanhSachSP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh Sách Sản Phẩm</h2>
+
+<p>
+    @Html.ActionLink("Thêm Sản Phẩm", "ThemSP")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.masp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tensp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.giagocsp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.maloaisp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.giabansp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngaynhapsp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soluongsp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.motasp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.anhsp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tinhtrangsp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.size)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.masp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tensp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.giagocsp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoaiSanPham.tenloaisp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.giabansp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngaynhapsp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soluongsp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.motasp)
+        </td>
+        <td>
+            <img src="@Url.Content("~/HinhAnh/nu/"+@item.anhsp)" class="anhsp" style="height:150px;width:120px;"alt="" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tinhtrangsp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.size)
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh Sửa", "SuaSP", new {@masp=@item.masp }) |
+            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+            @Html.ActionLink("Xóa", "XoaSP", new { @masp= @item.masp })
+        </td>
+    </tr>
+}
+
+</table>

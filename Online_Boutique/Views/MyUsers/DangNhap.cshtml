@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/TrangCon_Layout.cshtml";
+}
+
+@section leftcontent{
+  
+    }
+
+<div class="container">
+    <div class="login-page">
+        <div class="dreamcrub">
+            <ul class="breadcrumbs">
+                <li class="home">
+                    <a href="index.html" title="Go to Home Page">Home</a>&nbsp;
+                    <span>&gt;</span>
+                </li>
+                <li class="women">
+                    Login
+                </li>
+            </ul>
+            <ul class="previous">
+                <li><a href="index.html">Back to Previous Page</a></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="account_grid">
+            <div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
+                <h2>NEW CUSTOMERS</h2>
+                <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+                <a class="acount-btn" href="register.html">Create an Account</a>
+            </div>
+            <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
+                <h3>REGISTERED CUSTOMERS</h3>
+                <p>If you have an account with us, please log in.</p>
+                @using (Html.BeginForm("DangNhap","MyUsers",FormMethod.Post))
+                {
+                        @*<form>*@
+                            <div>
+                                <span>Tên tài khoản<label>*</label></span>
+                                <input type="text" name="txttk">
+                            </div>
+                            <div>
+                                <span>Mật khẩu<label>*</label></span>
+                                <input type="password" name="txtmk">
+                            </div>
+                            <a class="forgot" href="#">Forgot Your Password?</a>
+                            <input type="submit" value="Đăng Nhập">
+                        @*</form>*@
+                }
+                <h5 style="color:red;">@ViewBag.thongbao</h5>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+
+
+    @*co the truyen them tham so o day: ten actioname xu ly va controller cua no
+    @using (Html.BeginForm())
+    {
+        <span>Tài Khoản: </span> @Html.TextBox("txttk"); <br />
+        <span>Mật Khẩu:</span><input name="txtmk" type="password" /> <br />
+        <input type="submit" value="Đăng Nhập" id="btndangnhap_id" name="btndangnhap_name" />
+
+    }
+    <h5>@ViewBag.thongbao</h5>
+    *@

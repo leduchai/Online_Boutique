@@ -1,0 +1,143 @@
+﻿@using Online_Boutique.Models.MyModels;
+@model List<LoaiSanPham>
+ <!-- header-section-starts va thanh menu -->
+    <div class="header">
+        <div class="header-top-strip">
+            <div class="container">
+                <div class="header-top-left">
+                    <ul>
+                        <li><a href="@Url.Action("DangNhap","MyUsers")"><span class="glyphicon glyphicon-user"> </span>Login</a></li>
+                        <li><a href="register.html"><span class="glyphicon glyphicon-lock"> </span>Create an Account</a></li>
+                    </ul>
+                </div>
+                <div class="header-right">
+                    <div class="cart box_1">
+                        <a href="@Url.Action("GioHang","MyCart")">
+                            <h3> <span class="simpleCart_total"> $0.00 </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span>)<img src="/Content/web/images/bag.png" alt=""></h3>
+                        </a>
+                        <p><a href="javascript:;" class="simpleCart_empty">Empty cart</a></p>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+               
+                <div class="clearfix"> </div>
+                
+            </div>
+            
+        </div>
+        <div>
+            @{ <span style="margin-left:100px;"><i><b>@Session["username"]</b></i></span>}
+        </div>
+    </div>
+    <!-- header-section-ends -->
+   
+    <div class="banner-top">
+        <div class="container">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header" style="width:150px;">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="logo">
+                      
+                            <h1 style="display:inline;"><a href="@Url.Action("Index","MyHome")"><span>E</span> -Shop</a></h1>
+                    </div>
+                   
+                    
+                </div>
+                <!--/.navbar-header-->
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                    
+                        <li>
+                            @using (Html.BeginForm("KetQuaTimKiem","MySearchProducts",FormMethod.Post))
+                            {
+                                @Html.TextBox("txttimkiem", "", htmlAttributes: new { @class = "txttk_class", @placeholder = "Tìm kiếm sản phẩm, thương hiệu...", @style = "width:370px; height:42px;margin-right:270px;" })
+                            }
+                        </li>
+                        <li class="dropdown">
+                            <a href="@Url.Action("HeaderPartial","MyHome",new {@gt= "nu"})" class="dropdown-toggle" data-toggle="dropdown">Women <b class="caret"></b></a>
+                            <ul class="dropdown-menu multi-column columns-3" style="min-width:120px;">
+                                <div class="row">
+                                    <div class="col-sm-1">
+                                        <ul class="multi-column-dropdown">
+                                            
+                                            @{ 
+                                                foreach (var item in Model)
+                                                {
+                                           
+                                                    <li><a href="@Url.Action("LoaiSP","MyProducts",new {@maloaisp=@item.maloaisp})">@item.tenloaisp</a></li>
+                                                }
+
+                                             }
+                          
+                                        </ul>
+                                    </div>
+                                   
+                                    <div class="clearfix"></div>
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="@Url.Action("HeaderPartial","MyHome",new {@gt="nam" })" class="dropdown-toggle" data-toggle="dropdown">Men <b class="caret"></b></a>
+                            <ul class="dropdown-menu multi-column columns-3" style="min-width:110px;">
+                                <div class="row">
+                                    <div class="col-sm-1">
+                                        <ul class="multi-column-dropdown">
+
+                                            @{
+                                                foreach (var item in Model)
+                                                {
+
+                                                    <li><a href="@Url.Action("LoaiSP","MyProducts",new {@maloaisp=@item.maloaisp})">@item.tenloaisp</a></li>
+                                                }
+
+                                            }
+
+                                        </ul>
+
+                                    </div>
+                                    <div class="clearfix"></div>
+                                 </div>
+                            </ul>
+                        </li>
+                        @*<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">kids <b class="caret"></b></a>
+                            <ul class="dropdown-menu multi-column columns-2">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <ul class="multi-column-dropdown">
+                                            <li><h6>NEW IN</h6></li>
+                                            <li><a href="products.html">New In Boys Clothing</a></li>
+                                            <li><a href="products.html">New In Girls Clothing</a></li>
+                                            <li><a href="products.html">New In Boys Shoes</a></li>
+                                            <li><a href="products.html">New In Girls Shoes</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <ul class="multi-column-dropdown">
+                                            <li><h6>ACCESSORIES</h6></li>
+                                            <li><a href="products.html">Bags</a></li>
+                                            <li><a href="products.html">Watches</a></li>
+                                            <li><a href="products.html">Sun Glasses</a></li>
+                                            <li><a href="products.html">Jewellery</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </ul>
+                        </li>*@
+                       
+                        <li><a href="contact.html">CONTACT</a></li>
+                    </ul>
+                </div>
+                <!--/.navbar-collapse-->
+            </nav>
+            <!--/.navbar-->
+        </div>
+    </div>
+<!-- header-section-va thanh menu ends -->
